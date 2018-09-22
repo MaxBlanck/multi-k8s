@@ -1,0 +1,15 @@
+# Service creates access to associated pod for all other pods within node cluster 
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    # selector targets label of associated deployment
+    component: redis
+  ports:
+    # service port
+    - port: 6379
+    # container/pod port
+      targetPort: 6379

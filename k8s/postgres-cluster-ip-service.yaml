@@ -1,0 +1,15 @@
+# Service creates access to associated pod for all other pods within node cluster 
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    # selector targets label of associated deployment
+    component: postgres
+  ports:
+    # service port
+    - port: 5432
+    # container/pod port
+      targetPort: 5432

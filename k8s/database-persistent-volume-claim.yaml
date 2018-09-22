@@ -1,0 +1,13 @@
+# Persitent Volume Claim to securely store data even if pod, incl. containers, of postgres DB are terminated!
+# Claim is not a storage per se, it is an option/claim to get storage from kubernetes!
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: database-persistent-volume-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      # kubernetes has to find a storage option of 2 Gi (on local harddrive by default or cloud provider)
+      storage: 2Gi
